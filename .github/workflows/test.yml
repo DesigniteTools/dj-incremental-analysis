@@ -21,7 +21,7 @@ jobs:
       #       ${{ runner.os }}-pip-
       # - run: pip install -r requirements.txt
       # - run: pytest
-      - run: echo ${{ github.event_name }}
-      - run: echo ${{ github.event.base_ref }}
-      - run: echo ${{ github.event.head_ref }}
-      - run: echo ${{ github.event.before }}
+      - run: ${{ github.event }}
+      # - run: echo ${{ github.event.base_ref }}
+      # - run: echo ${{ github.event.head_ref }}
+      # - run: echo ${{ github.event.before }}
