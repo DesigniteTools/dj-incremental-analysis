@@ -21,7 +21,27 @@ jobs:
       #       ${{ runner.os }}-pip-
       # - run: pip install -r requirements.txt
       # - run: pytest
-      - run: ${{ github.event }}
+      # - run: ${{ github.event }}
       # - run: echo ${{ github.event.base_ref }}
       # - run: echo ${{ github.event.head_ref }}
       # - run: echo ${{ github.event.before }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 17
+          distribution: 'corrretto'
+      
+      - name: Run Designite Java
+        uses: actions/checkout@v4
+        
+      - run: |
+          - java --version
+          - ls -a
+          - mkdir -p /tmp/Desingnite_Output_${{ github.sha }}
+          - ls -a /tmp/
+          - java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
+    
