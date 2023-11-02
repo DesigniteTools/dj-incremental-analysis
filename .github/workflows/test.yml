@@ -39,7 +39,7 @@ jobs:
         script: 
           - java --version
           - ls -a
-          - mkdir -p /tmp/Desingnite_Output_${{ GITHUB_SHA }}
+          - mkdir -p /tmp/Desingnite_Output_${{ github.sha }}
           - ls -a /tmp/
-        run: java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ GITHUB_SHA }} -d
+        run: java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
       
