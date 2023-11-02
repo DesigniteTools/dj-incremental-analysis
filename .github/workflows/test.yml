@@ -21,7 +21,11 @@ jobs:
       #       ${{ runner.os }}-pip-
       # - run: pip install -r requirements.txt
       # - run: pytest
-      - run: ${{ github.event }}
+      # - run: ${{ github.event }}
       # - run: echo ${{ github.event.base_ref }}
       # - run: echo ${{ github.event.head_ref }}
       # - run: echo ${{ github.event.before }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
