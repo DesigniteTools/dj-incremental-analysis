@@ -36,11 +36,11 @@ jobs:
           distribution: 'corrretto'
       
       - name: Run Designite Java
-      - uses: actions/checkout@v4
-      - script: 
+        uses: actions/checkout@v4
+        script: 
           - java --version
           - ls -a
           - mkdir -p /tmp/Desingnite_Output_${{ github.sha }}
           - ls -a /tmp/
-        run: java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
+          - java -jar ./.github/DesigniteJava.jar -i ./ -o /tmp/Desingnite_Output_${{ github.sha }} -d
       
