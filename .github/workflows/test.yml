@@ -37,7 +37,7 @@ jobs:
       
       - name: Run Designite Java
         uses: actions/checkout@v4
-        script: 
+        run: 
           - java --version
           - ls -a
           - mkdir -p /tmp/Desingnite_Output_${{ github.sha }}
