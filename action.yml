@@ -1,41 +1,18 @@
-# name: "designite-util"
-
-# inputs:
-#   # Path to the DesigniteJava.jar file
-#   designite-jar-path:
-#     description: "Path to the DesigniteJava.jar file"
-#     required: true
-#     default: "./.github/DesigniteJava.jar"
-#   # Path to the directory to be analyzed
-#   input-dir-path:
-#     description: "Path to the directory to be analyzed"
-#     required: true
-#     default: "./"
-#   # Path to the output directory
-#   output-dir-path:
-#     description: "Path to the output directory"
-#     required: true
-#     default: "/tmp/Desingnite_Output_${{ github.sha }}"
-#   # DesigniteJava command line arguments
-#   designite-args:
-#     description: "DesigniteJava command line arguments"
-#     required: false
-#     default: "-d"
-#   # GitHub context
-#   github-context:
-#     description: "GitHub context"
-#     required: false
-#     default: ${{ toJson(github) }}
-
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Designite-Diff-Action'
+description: 'Identify newly created design issues'
 inputs:
   github-token:
-    description: 'GitHub Token'
+    description: 'GitHub token created during workflow execution (Set to Read and Write)'
     required: true
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  designite-output-old:
+    description: 'Designite output folder name from previous commit'
+    required: true
+  designite-output-new:
+    description: 'Designite output folder name from current commit'
+    required: true    
+  repo-name:
+    description: 'Repository Name'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
