@@ -1,0 +1,23 @@
+name: 'Designite-Diff-Action'
+description: 'Identify newly created design issues'
+inputs:
+  github-token:
+    description: 'GitHub token created during workflow execution (Set to Read and Write)'
+    required: true
+  designite-output-old:
+    description: 'Designite output folder name from previous commit'
+    required: true
+  designite-output-new:
+    description: 'Designite output folder name from current commit'
+    required: true    
+  repo-name:
+    description: 'Repository Name'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - --token=${{ inputs.github-token }}
+    - --designite-output-old=${{ inputs.designite-output-old }}
+    - --designite-output-new=${{ inputs.designite-output-new }}
+    - --repo-name=${{ inputs.repo-name }}
