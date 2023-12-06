@@ -1,12 +1,3 @@
-# import typer
-
-
-# def main(api_token: str, vcs: str = "github"):
-#     print(vcs)
-
-# if __name__=="__main__":
-#     typer.run(main)
-
 import argparse
 import requests
 import os
@@ -72,9 +63,6 @@ def main(token, designite_output_old, designite_output_new, repo):
     print(f"Artifact '{designite_output_old}' downloaded successfully.")
 
     get_new_smells(designite_output_old, designite_output_new)
-
-
-
 
 if __name__ == "__main__":
     args = parser.parse_args()
