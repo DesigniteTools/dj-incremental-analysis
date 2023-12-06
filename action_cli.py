@@ -64,7 +64,17 @@ def main(token, designite_output_old, designite_output_new, repo):
 
     get_new_smells(designite_output_old, designite_output_new)
 
+
+
+
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--token", dest="token", help="API token")
+    parser.add_argument("--repo-name", dest="repo", help="Repo name")
+    parser.add_argument("--designite-output-old", dest="designite_output_old", help="Designite Output Old")
+    parser.add_argument("--designite-output-new", dest="designite_output_new", help="Designite Output New")
     args = parser.parse_args()
-    download_artifact(args.token, args.artifact, args.user, args.repo)
-    
+
+    # download_artifact(args.token, args.run_id, args.repo)
+    main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
