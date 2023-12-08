@@ -77,4 +77,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # download_artifact(args.token, args.run_id, args.repo)
-    main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
+    # main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
+    print(os.getcwd())
