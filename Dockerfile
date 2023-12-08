@@ -17,4 +17,4 @@ RUN ls -a
 
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["python", "./src/action_cli.py"]
+ENTRYPOINT ["python", "src/action_cli.py"]
