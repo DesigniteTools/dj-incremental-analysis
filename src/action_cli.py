@@ -54,7 +54,7 @@ def get_new_smells(designite_output_old, designite_output_new):
 
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
-    
+
     artifact_resp = api_request(f"{GITHUB_API_URL}/repos/{repo}/actions/artifacts", token, params={"per_page": 100})
 
     if artifact_resp.status_code != 200:
@@ -88,5 +88,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # download_artifact(args.token, args.run_id, args.repo)
-    # main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
-    print(os.getcwd())
+    main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
