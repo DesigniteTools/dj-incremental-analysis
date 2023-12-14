@@ -19,4 +19,4 @@ RUN ls -a src/
 
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["python", "/src/artifact_processor.py"]
+ENTRYPOINT ["python", "/src/main.py"]
