@@ -6,7 +6,7 @@ Description: Module to download and extract the artifact from the repository.
 
 import os
 import zipfile
-import requests
+from utils import Utils
 
 
 class ArtifactProcessor:
@@ -18,16 +18,8 @@ class ArtifactProcessor:
         self.repo = repo
         self.token = token
 
-    def __api_request(self, url, method="GET", data=None, params=None):
-        '''Make an API request to GitHub.'''
-
-        headers = {"Authorization": f"Bearer {self.token}"}
-        timeout = 10
-        response = requests.request(method, url, headers=headers, timeout=timeout, data=data, params=params)
-        return response
-
     def __fetch_repo_artifact(self):
-        artifact_resp = self.__api_request(f"{self.github_api_url}/repos/{self.repo}/actions/artifacts", self.token, params={"per_page": 100})
+        artifact_resp = Utils.api_request(f"{self.github_api_url}/repos/{self.repo}/actions/artifacts", self.token, params={"per_page": 100})
 
         if artifact_resp.status_code != 200:
             print(f"Failed to fetch artifacts for repository - {self.repo}.")
@@ -53,7 +45,7 @@ class ArtifactProcessor:
         if not artifact:
             return False
 
-        resp = self.__api_request(artifact["archive_download_url"])
+        resp = Utils.api_request(artifact["archive_download_url"], self.token)
         if resp.status_code != 200:
             print(f"Failed to download artifact '{artifact['name']}'.")
             return False
