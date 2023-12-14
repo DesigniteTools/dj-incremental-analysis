@@ -25,7 +25,7 @@ class ArtifactProcessor:
             print(f"Failed to fetch artifacts for repository - {self.repo}.")
             return None
 
-        artifacts = artifact_resp.json()
+        artifacts = artifact_resp.json()["artifacts"]
         filtered_artifacts = list(filter(lambda artifact: artifact["name"] == self.designite_output_old, artifacts))
 
         if not filtered_artifacts or len(filtered_artifacts) >1:
