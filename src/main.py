@@ -1,6 +1,7 @@
 import argparse
 from designiteutil.designite_diff import process
 from artifact_processor import ArtifactProcessor
+from issue import Issues
 
 def get_new_smells(designite_output_old, designite_output_new):
     '''Get the new smells from the current run'''
@@ -21,6 +22,11 @@ def main(token, designite_output_old, designite_output_new, repo):
     print(f"Artifact '{designite_output_old}' downloaded successfully.")
 
     get_new_smells(designite_output_old, designite_output_new)
+
+    issues = Issues("new_smells.json").get_issues()
+
+    print(issues)
+
 
 
 
