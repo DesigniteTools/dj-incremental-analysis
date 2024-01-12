@@ -60,11 +60,13 @@ class Issues:
     def create_issues(self):
         '''Create the issues'''
         for issue in self.issues:
+            print(issue["body"])
             data = {
                 "title": issue["title"],
                 "body": issue["body"],
                 "labels": ["smell"]
             }
+            print(data)
             resp = Utils.api_request(f"{self.github_api_url}/repos/{self.repo}/issues", self.token, method="POST", data=data)
             if resp.status_code != 201:
                 print(f"Failed to create issue - {issue['title']}.")
