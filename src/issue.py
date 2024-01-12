@@ -23,10 +23,11 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += DESIGN_SMELL_TEMPLATE.replace("_pkg_name_", smell_info[1]) \
-                                .replace("_type_", smell_info[2]) \
-                                .replace("_smell_", smell_info[3])
-            body += "\n\n"
+            # body += DESIGN_SMELL_TEMPLATE.replace("_pkg_name_", smell_info[1]) \
+            #                     .replace("_type_", smell_info[2]) \
+            #                     .replace("_smell_", smell_info[3])
+            body += f"- [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}\n\n"
+            body += "<br>"
         return body
 
     def __create_issue_body_implementation(self, smells):
