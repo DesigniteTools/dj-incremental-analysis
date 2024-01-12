@@ -23,13 +23,11 @@ def main(token, designite_output_old, designite_output_new, repo):
 
     get_new_smells(designite_output_old, designite_output_new)
 
-    issues = Issues("new_smells.json").get_issues()
+    issues = Issues("new_smells.json", token=token, repo=repo).get_issues().create_issues()
 
-    print(issues)
-
-
-
-
+    if not issues:
+        print("Failed to create issues.")
+        return
 
 if __name__ == "__main__":
 

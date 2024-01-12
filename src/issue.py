@@ -1,33 +1,30 @@
 import json
-from constants import ARCHITECTURE_SMELL_TEMPLATE, DESIGN_SMELL_TEMPLATE, IMPLEMENTATION_SMELL_TEMPLATE
+from utils import Utils
 
 
 class Issues:
     '''This class is responsible for creating the issues'''
-    def __init__(self, file_path):
+    def __init__(self, file_path, token, repo):
         self.file_path = file_path
         self.issues = []
+        self.token = token
+        self.github_api_url = "https://api.github.com"
+        self.repo = repo
 
     def __create_issue_body_architecture(self, smells):
         '''Create the body of the issue'''
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += ARCHITECTURE_SMELL_TEMPLATE.replace("_pkg_name_", smell_info[1]) \
-                                .replace("_smell_", smell_info[2])
-            body += "\n\n"
+            body += f"**Package Name**: {smell_info[1]} **Smell**: {smell_info[2]}<br><br>"
         return body
-    
+
     def __create_issue_body_design(self, smells):
         '''Create the body of the issue'''
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            # body += DESIGN_SMELL_TEMPLATE.replace("_pkg_name_", smell_info[1]) \
-            #                     .replace("_type_", smell_info[2]) \
-            #                     .replace("_smell_", smell_info[3])
-            body += f"- [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}\n\n"
-            body += "<br>"
+            body += f"**Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}<br><br>"
         return body
 
     def __create_issue_body_implementation(self, smells):
@@ -35,13 +32,9 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += IMPLEMENTATION_SMELL_TEMPLATE.replace("_pkg_name_", smell_info[1]) \
-                                .replace("_type_", smell_info[2]) \
-                                .replace("_method_", smell_info[3]) \
-                                .replace("_smell_", smell_info[4])
-            body += "\n\n"
+            body += f"**Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Method**: {smell_info[3]} **Smell**: {smell_info[4]}<br><br>"
         return body
-    
+
     def __parse_issues(self):
         with open(self.file_path, "r") as f: #pylint: disable=unspecified-encoding
             smells = json.load(f)
@@ -62,10 +55,26 @@ class Issues:
     def get_issues(self):
         '''Get the issues'''
         self.__parse_issues()
-        return self.issues
+        return self
+
+    def create_issues(self):
+        '''Create the issues'''
+        for issue in self.issues:
+            data = {
+                "title": issue["title"],
+                "body": issue["body"],
+                "labels": ["smell"]
+            }
+            resp = Utils.api_request(f"{self.github_api_url}/repos/{self.repo}/issues", self.token, method="POST", data=data)
+            if resp.status_code != 201:
+                print(f"Failed to create issue - {issue['title']}.")
+                print(resp.json())
+                return False
+            print(f"Issue - {issue['title']} created successfully.")
+        return True
 
 
 
-                    
-                    
-                
+
+
+
