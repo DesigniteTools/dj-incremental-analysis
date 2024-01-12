@@ -16,7 +16,7 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += f"**Package Name**: {smell_info[1]} **Smell**: {smell_info[2]}<br><br>"
+            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Smell**: {smell_info[2]}<br><br>"
         return body
 
     def __create_issue_body_design(self, smells):
@@ -24,7 +24,7 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += f"**Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}<br><br>"
+            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}<br><br>"
         return body
 
     def __create_issue_body_implementation(self, smells):
@@ -32,7 +32,7 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += f"**Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Method**: {smell_info[3]} **Smell**: {smell_info[4]}<br><br>"
+            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Method**: {smell_info[3]} **Smell**: {smell_info[4]}<br><br>"
         return body
 
     def __parse_issues(self):
@@ -67,7 +67,7 @@ class Issues:
                 "labels": ["smell"]
             }
             print(data)
-            resp = Utils.api_request(f"{self.github_api_url}/repos/{self.repo}/issues", self.token, method="POST", data=data)
+            resp = Utils.api_request(f"{self.github_api_url}/repos/{self.repo}/issues", self.token, method="POST", json=data)
             if resp.status_code != 201:
                 print(f"Failed to create issue - {issue['title']}.")
                 print(resp.json())
