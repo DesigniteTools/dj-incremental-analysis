@@ -11,7 +11,7 @@ Reusable GitHub Action with (upcoming) support for GitLab.
 
 - Here's an exaple issue created by this action:
 
-![Example Issue](docs\images\SampleIssue.png)
+![Example Issue](./docs/images/SampleIssue.png)
 
 ## How to use this action?
 
