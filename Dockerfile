@@ -7,7 +7,7 @@ FROM python:3.10-alpine
 # COPY . .
 COPY src/ src/
 COPY requirements.txt /requirements.txt
-COPY Designite-Util-0.1.tar.gz /Designite-Util-0.1.tar.gz
+COPY Designite-Util-0.1.2.tar.gz /Designite-Util-0.1.2.tar.gz
 
 RUN pip install -r requirements.txt
 
