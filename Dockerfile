@@ -11,7 +11,7 @@ COPY Designite-Util-0.1.tar.gz /Designite-Util-0.1.tar.gz
 
 RUN pip install -r requirements.txt
 
-RUN pip install Designite-Util-0.1.tar.gz
+RUN pip install Designite-Util-0.1.2.tar.gz
 
 RUN ls -a
 
