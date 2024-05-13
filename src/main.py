@@ -16,7 +16,7 @@ def _download_artifact(designite_output, repo, token):
     if not download_artifact_output:
         print(f"Failed to download artifact for repository - {repo}.")
         return False
-    print(f"Artifact '{designite_output}' downloaded successfully - {os.path.abspath(download_artifact_output)}")
+    print(f"Artifact '{designite_output}' downloaded successfully - {os.path.abspath(designite_output)}")
     return True
 
 
