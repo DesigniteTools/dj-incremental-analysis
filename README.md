@@ -29,8 +29,8 @@ An example of the file is provided below.
   with:
     PAT: ${{ secrets.PAT }}
 
-- name: Designite diff action
-  uses: DesigniteTools/DJ-Incremental-Analysis@v1.0.0-alpha
+- name: DesigniteJava incremental code quality analysis and issue creation
+  uses: DesigniteTools/dj-incremental-analysis@v1.0.0
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     designite-output-old: designite-output-${{ github.event.before }}
