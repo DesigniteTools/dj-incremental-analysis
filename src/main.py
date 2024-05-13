@@ -20,15 +20,16 @@ def _download_artifact(designite_output, repo, token):
     return True
 
 
-def ls():
-    print('ls /github/workspace: ')
-    for file in [f for f in os.listdir('/github/workspace')]:
+def ls(folder):
+    print(f'ls {folder}: ')
+    for file in [f for f in os.listdir(folder)]:
         print(file)
 
 
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
-    ls()
+    ls('.')
+    ls('/github/workspace')
     if not _download_artifact(designite_output_old, repo, token):
         return
     if not _download_artifact(designite_output_new, repo, token):
