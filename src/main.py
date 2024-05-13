@@ -32,7 +32,7 @@ def main(token, designite_output_old, designite_output_new, repo):
     if not _download_artifact(designite_output_old, repo, token):
         return
     ls('/github/workspace')
-    os.rename(os.path.abspath('designite_output'), os.path.abspath(designite_output_new))
+    os.rename(os.path.abspath('designite-output'), os.path.abspath(designite_output_new))
     print('after move')
     ls('/github/workspace')
     if not _download_artifact(designite_output_new, repo, token):
