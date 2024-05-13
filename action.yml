@@ -1,5 +1,5 @@
-name: 'Designite-Diff-Action'
-description: 'Identify newly created design issues'
+name: 'DJ incremental quality analysis'
+description: 'Identify code quality smells in the new code'
 inputs:
   github-token:
     description: 'GitHub token created during workflow execution (Set to Read and Write)'

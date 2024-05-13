@@ -9,22 +9,24 @@ def get_new_smells(designite_output_old, designite_output_new):
     with open("new_smells.json", "r") as f: #pylint: disable=unspecified-encoding
         print(f.read())
 
+def _download_artifact(designite_output, repo, token):
+    download_artifact_output = ArtifactProcessor(designite_output, repo, token).download_artifact()
+    if not download_artifact_output:
+        print(f"Failed to download artifact for repository - {repo}.")
+        return False
+    print(f"Artifact '{designite_output}' downloaded successfully.")
+    return True
+
 
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
-
-    download_artifact_output = ArtifactProcessor(designite_output_old, repo, token).download_artifact()
-
-    if not download_artifact_output:
-        print(f"Failed to download artifact for repository - {repo}.")
+    result_old = _download_artifact(designite_output_old, repo, token)
+    result_new = _download_artifact(designite_output_new, repo, token)
+    if not (result_old and result_new):
         return
 
-    print(f"Artifact '{designite_output_old}' downloaded successfully.")
-
     get_new_smells(designite_output_old, designite_output_new)
-
     issues = Issues("new_smells.json", token=token, repo=repo).get_issues().create_issues()
-
     if not issues:
         print("Failed to create issues.")
         return
