@@ -1,50 +1,37 @@
-# designite-diff-action
-Reusable GitHub Action with (upcoming) support for GitLab.
+# dj-incremental-analysis
 
-## What does this action do?
+- This GitHub action identify **newly** introduced smells in a commit. The supported smells types are `Architecture Smells`, `Design Smells` and `Implementation Smells`.
 
-- This action is used to generate and identify **newly** introduced smells in a commit. As of now, it only supports `Architecture Smells`, `Design Smells` and `Implementation Smells`.
+- A **diff of smells** (i.e., added and removed smells since the last commit) is computed using the [designite_util](https://github.com/tushartushar/designite_util) library. 
 
-- The diff is calculated using the [designite_util](https://github.com/tushartushar/designite_util) library. More information on how it identifies the diff between generated output csv can be found in the repository's README.
+- Finally, the action creates *issue(s)* for the identified *diff of smells* automatically.
 
-- Finally, based on the identified new smells, the action creates *issue(s)* for the same automatically.
-
-- Here's an exaple issue created by this action:
+- Here's an example issue created by this action:
 
 ![Example Issue](./docs/images/SampleIssue.png)
 
 ## How to use this action?
 
-Using this action is pretty straightforward. But there are a few pre-requisites that are needed to be followed.
+### Pre-requisites
 
-- **Workflow Permission**: Make dure the `Workflow Permissions` of the repository (*settings > Actions > General*) is set to **Read and write permissions**. If it's not the case, `GITHUB_TOKEN` used in this action, won't be able to create the issues or download the artifacts.
+- **Workflow permission**: Make sure that the `Workflow permissions` of the repository (*settings > Actions > General*) is set to **Read and write permissions**. If it's not the case, the action won't be able to create the issues or download the artifacts.
 
-- Have [DesigniteJava jar](https://www.designite-tools.com/designitejava/) in your repository.
-  
-- Finally, there must be 3 stages in your workflow file:  
-    - **Stage 1:** Run DesigniteJava jar on the current commit.
-    - **Stage 2:** Upload the output of the `jar` file run as artifacts. Please note that these artifacts expire after <u>**90 days**</u>. 
-    - **Stage 3:** Use this action. It will download the artifact from the previous commit (if exists), find the diff with the present commit and if there exists new smells, it'll create issues forthe same.
+### Workflow file  
+Create a GitHub Action workflow file in the repository. We first needs to analyze the latest commit using DesigniteJava; it can be achieved using `DJAction` action. The `DJAction` action stores the analyzed code quality report in the Actions artifacts. 
 
-An example of the 3 stages from a workflow file is as follows:
+The second key step of this exercise is to use this action with the required inputs.
+An example of the file is provided below.
 
 ```yml
-- name: Run Designite
-id: designite
-run: |
-    java --version
-    echo "${{env.DESIGNITE_OUTPUT}}"
-    java -jar ./.github/DesigniteJava.jar -i ./ -o "${{env.DESIGNITE_OUTPUT}}" -d
-
-- name: Archive Designite results
-uses: actions/upload-artifact@v3
-with:
-    name: designite-output-${{ github.sha }}
-    path: "${{env.DESIGNITE_OUTPUT}}"
+- name: Run Designite analysis for the latest commit
+  id: designite
+  uses: DesigniteTools/DJAction@v2.0
+  with:
+    PAT: ${{ secrets.PAT }}
 
 - name: Designite diff action
-uses: IP1102/designite-diff-action@v1.0.0-alpha
-with:
+  uses: DesigniteTools/DJ-Incremental-Analysis@v1.0.0-alpha
+  with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     designite-output-old: designite-output-${{ github.event.before }}
     designite-output-new: designite-output-${{ github.sha }}

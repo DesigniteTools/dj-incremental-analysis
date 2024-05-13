@@ -5,13 +5,13 @@ inputs:
     description: 'GitHub token created during workflow execution (Set to Read and Write)'
     required: true
   designite-output-old:
-    description: 'Designite output folder name from previous commit'
+    description: 'DesigniteJava analysis output folder name from previous commit'
     required: true
   designite-output-new:
-    description: 'Designite output folder name from current commit'
+    description: 'DesigniteJava analysis output folder name from current commit'
     required: true    
   repo-name:
-    description: 'Repository Name'
+    description: 'Repository name'
     required: true
 runs:
   using: 'docker'
