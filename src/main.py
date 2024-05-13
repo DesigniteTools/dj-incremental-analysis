@@ -20,9 +20,18 @@ def _download_artifact(designite_output, repo, token):
     return True
 
 
+def ls():
+    print('ls /github/workspace: ')
+    for file in [f for f in os.listdir('/github/workspace')]:
+        print(file)
+
+
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
+    ls()
     if not _download_artifact(designite_output_old, repo, token):
+        return
+    if not _download_artifact(designite_output_new, repo, token):
         return
     if not designite_output_new:
         print("Failed to find the artifact from the current run.")

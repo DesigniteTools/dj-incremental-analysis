@@ -12,9 +12,9 @@ from utils import Utils
 class ArtifactProcessor:
     '''This class is responsible for downloading the artifact from the repository and extracting it.'''
 
-    def __init__(self, designite_output_old, repo, token):
+    def __init__(self, designite_output, repo, token):
         self.github_api_url = "https://api.github.com"
-        self.designite_output_old = designite_output_old
+        self.designite_output = designite_output
         self.repo = repo
         self.token = token
 
@@ -26,11 +26,14 @@ class ArtifactProcessor:
             return None
 
         artifacts = artifact_resp.json()["artifacts"]
-        filtered_artifacts = list(filter(lambda artifact: artifact["name"] == self.designite_output_old, artifacts))
+        filtered_artifacts = list(filter(lambda artifact: artifact["name"] == self.designite_output, artifacts))
 
-        if not filtered_artifacts or len(filtered_artifacts) >1:
-            print(f"No artifacts found for this repository or multiple artifacts found - {self.designite_output_old}. Please check the artifact name.")
+        if not filtered_artifacts:
+            print(f"No artifacts found for this repository - {self.designite_output}. Please check the artifact name.")
             return None
+        # if len(filtered_artifacts) >1:
+        #     print(f"Multiple artifacts found - {self.designite_output}. Please check the artifact name.")
+        #     return None
 
         artifact = filtered_artifacts[0]
 
