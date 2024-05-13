@@ -1,14 +1,12 @@
-# dj-incremental-analysis
+The action identifies code smells in the newly added code and creates issues automatically describing the newly introduced smells.
 
-- This GitHub action identify **newly** introduced smells in a commit. The supported smells types are `Architecture Smells`, `Design Smells` and `Implementation Smells`.
+## Features
 
-- A **diff of smells** (i.e., added and removed smells since the last commit) is computed using the [designite_util](https://github.com/tushartushar/designite_util) library. 
+- Analyzes Java source code at each push event using [DesigniteJava](https://www.designite-tools.com/) wrapped in [DJAction](https://github.com/marketplace/actions/designitejava-action). The supported smells types are `Architecture Smells`, `Design Smells` and `Implementation Smells`.
 
-- Finally, the action creates *issue(s)* for the identified *diff of smells* automatically.
+- Identifies the introduced smells in the newly added code using the [designite_util](https://github.com/tushartushar/designite_util) library. 
 
-- Here's an example issue created by this action:
-
-![Example Issue](./docs/images/SampleIssue.png)
+- Creates new GitHub issues automatically describing each smell instance; consolidates the same kind of smells in one issue
 
 ## How to use this action?
 
@@ -37,6 +35,11 @@ An example of the file is provided below.
     designite-output-new: designite-output-${{ github.sha }}
     repo-name: ${{ github.repository }}             
 ```
+
+- Here's an example issue created by this action:
+
+![Example Issue](./docs/images/SampleIssue.png)
+
 
 For more details, please checkout this [example repository](https://github.com/IP1102/action-test) using this action. 
 
