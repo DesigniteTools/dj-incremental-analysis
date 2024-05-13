@@ -1,5 +1,5 @@
-name: 'DJ incremental quality analysis'
-description: 'Identify code quality smells in the new code'
+name: 'DesigniteJava Incremental Code Quality Analysis'
+description: 'Identify code quality smells in new code and create new issues automatically to resolve the smells'
 branding:
     color: 'orange'
     icon: 'bar-chart-2'

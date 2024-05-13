@@ -8,15 +8,11 @@ FROM python:3.10-alpine
 COPY src/ src/
 COPY requirements.txt /requirements.txt
 COPY Designite-Util-0.1.2.tar.gz /Designite-Util-0.1.2.tar.gz
-
 RUN pip install -r requirements.txt
-
 RUN pip install Designite-Util-0.1.2.tar.gz
 
-RUN ls -a
-
-RUN ls -a src/
-
+#RUN ls -a
+#RUN ls -a src/
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["python", "/src/main.py"]
