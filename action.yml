@@ -1,5 +1,8 @@
 name: 'DJ incremental quality analysis'
 description: 'Identify code quality smells in the new code'
+branding:
+    color: 'orange'
+    icon: 'bar-chart-2'
 inputs:
   github-token:
     description: 'GitHub token created during workflow execution (Set to Read and Write)'
