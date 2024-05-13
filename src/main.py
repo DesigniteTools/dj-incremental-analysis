@@ -28,15 +28,18 @@ def ls(folder):
 
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
-    ls('.')
     ls('/github/workspace')
     if not _download_artifact(designite_output_old, repo, token):
         return
+    ls('/github/workspace')
+    os.rename(os.path.abspath('designite_output'), os.path.abspath(designite_output_new))
+    print('after move')
+    ls('/github/workspace')
     if not _download_artifact(designite_output_new, repo, token):
         return
-    if not designite_output_new:
-        print("Failed to find the artifact from the current run.")
-        return
+    # if not designite_output_new:
+    #     print("Failed to find the artifact from the current run.")
+    #     return
 
     get_new_smells(designite_output_old, designite_output_new)
     issues = Issues("new_smells.json", token=token, repo=repo).get_issues().create_issues()
