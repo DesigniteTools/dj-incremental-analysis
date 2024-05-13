@@ -1,4 +1,6 @@
 import argparse
+import os
+
 from designiteutil.designite_diff import process
 from artifact_processor import ArtifactProcessor
 from issue import Issues
@@ -14,7 +16,7 @@ def _download_artifact(designite_output, repo, token):
     if not download_artifact_output:
         print(f"Failed to download artifact for repository - {repo}.")
         return False
-    print(f"Artifact '{designite_output}' downloaded successfully.")
+    print(f"Artifact '{designite_output}' downloaded successfully - {os.path.abspath(download_artifact_output)}")
     return True
 
 
