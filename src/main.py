@@ -20,9 +20,10 @@ def _download_artifact(designite_output, repo, token):
 
 def main(token, designite_output_old, designite_output_new, repo):
     '''Download an artifact from a given run ID.'''
-    result_old = _download_artifact(designite_output_old, repo, token)
-    result_new = _download_artifact(designite_output_new, repo, token)
-    if not (result_old and result_new):
+    if not _download_artifact(designite_output_old, repo, token):
+        return
+    if not designite_output_new:
+        print("Failed to find the artifact from the current run.")
         return
 
     get_new_smells(designite_output_old, designite_output_new)
