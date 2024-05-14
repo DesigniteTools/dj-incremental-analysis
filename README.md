@@ -11,10 +11,10 @@ The action identifies code smells in the newly added code and creates issues aut
 ## How to use this action?
 
 ### Pre-requisites
-- **Personal access token**: Create a new personal access token for your GitHub repository. You may do it by going to “Settings” -> “Developer settings” page of your GitHub account. Select `Personal access token` tab and create a new token.
+- **Personal access token**: Create a new personal access token for your GitHub repository. You may do it by going to `Settings` -> `Developer settings` page of your GitHub account. Select `Personal access token` tab and create a new token.
 Add this token to your repository’s secrets. Go to `Settings` within your repository page and select `Secrets and variables` -> `Actions`. Add a new secret by pasting the access token in the `Value` field and giving a meaning name (e.g. `PAT`).
 
-- **Workflow permission**: Make sure that the `Workflow permissions` of the repository (*settings > Actions > General*) is set to **Read and write permissions**. If it's not the case, the action won't be able to create the issues or download the artifacts.
+- **Workflow permission**: Make sure that the `Workflow permissions` of the repository (`Settings` -> `Actions` -> `General`) is set to **Read and write permissions**. If it's not the case, the action won't be able to create the issues or download the artifacts.
 
 - **DesigniteJava key (optional)**: If you have professional or academic license key of DesigniteJava, add the key to your GitHub’s repository secrets. Let us call it `D_KEY`.
 
