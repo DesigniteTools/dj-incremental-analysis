@@ -11,15 +11,15 @@ The action identifies code smells in the newly added code and creates issues aut
 ## How to use this action?
 
 ### Pre-requisites
-- **Personal access token**: Create a new personal access token for your GitHub repository. You may do it by going to `Settings` -> `Developer settings` page of your GitHub account. Select `Personal access token` tab and create a new token.
-Add this token to your repository’s secrets. Go to `Settings` within your repository page and select `Secrets and variables` -> `Actions`. Add a new secret by pasting the access token in the `Value` field and giving a meaning name (e.g. `PAT`).
+- **Personal access token**: Create a new personal access token for your GitHub repository. You may do it by going to your GitHub account's `Settings` -> `Developer settings` page. Select the `Personal access token` tab and create a new token.
+Add this token to your repository's secrets. Go to `Settings` within your repository page and select `Secrets and variables` -> `Actions`. Add a new secret by pasting the access token in the `Value` field and giving a meaningful name (e.g., `PAT`).
 
-- **Workflow permission**: Make sure that the `Workflow permissions` of the repository (`Settings` -> `Actions` -> `General`) is set to **Read and write permissions**. If it's not the case, the action won't be able to create the issues or download the artifacts.
+- **Workflow permission**: Make sure that the repository's `Workflow permissions` (`Settings` -> `Actions` -> `General`) is set to **Read and write permissions**. If not, the action won't be able to create the issues or download the artifacts.
 
-- **DesigniteJava key (optional)**: If you have professional or academic license key of DesigniteJava, add the key to your GitHub’s repository secrets. Let us call it `D_KEY`.
+- **DesigniteJava key (optional)**: If you have a professional or academic license key for DesigniteJava, add the key to your GitHub repository secrets. Let us call it `D_KEY`. If your codebase is less than 50,000 lines of code, it won't impact you.
 
 ### Workflow file  
-Create a GitHub Action workflow file in the repository. We first needs to analyze the latest commit using DesigniteJava; it can be achieved using `DJAction` action. The `DJAction` action stores the analyzed code quality report in the Actions artifacts. 
+Create a GitHub Action workflow file in the repository. First, we need to analyze the latest commit using DesigniteJava; this can be achieved using the `DJAction` action. The `DJAction` action stores the analyzed code quality report in the Actions artifacts. 
 
 The second key step of this exercise is to use this action with the required inputs.
 An example of the file is provided below.
