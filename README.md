@@ -2,7 +2,7 @@ The action identifies code smells in the newly added code and creates issues aut
 
 ## Features
 
-- Analyzes Java source code at each push event using [DesigniteJava](https://www.designite-tools.com/) wrapped in [DJAction](https://github.com/marketplace/actions/designitejava-action). The supported smells types are `Architecture Smells`, `Design Smells` and `Implementation Smells`.
+- Analyzes Java source code at each push event using [DesigniteJava](https://www.designite-tools.com/) wrapped in [DJAction](https://github.com/marketplace/actions/designitejava-action). The supported smells types are *architecture smells*, *design smells* and *implementation smells*.
 
 - Identifies the introduced smells in the newly added code using the [designite_util](https://github.com/tushartushar/designite_util) library. 
 
