@@ -42,7 +42,7 @@ An example of the file is provided below.
 
 - Here's an example issue created by this action:
 
-![Example Issue](./docs/images/SampleIssue.png)
+![Example Issue](./docs/images/dj-action-issue.png)
 
 
 Consider checking out this [example repository](https://github.com/tushartushar/git-utils) utilizing this action. 
