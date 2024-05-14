@@ -41,5 +41,5 @@ An example of the file is provided below.
 ![Example Issue](./docs/images/SampleIssue.png)
 
 
-For more details, please checkout this [example repository](https://github.com/IP1102/action-test) using this action. 
+Consider checking out this [example repository](https://github.com/tushartushar/git-utils) utilizing this action. 
 
