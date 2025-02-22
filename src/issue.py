@@ -24,7 +24,7 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Smell**: {smell_info[3]}<br><br>"
+            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type/Module**: {smell_info[2]} **Smell**: {smell_info[3]}<br><br>"
         return body
 
     def __create_issue_body_implementation(self, smells):
@@ -32,7 +32,7 @@ class Issues:
         body = ""
         for smell in smells:
             smell_info = smell.split(",")
-            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type**: {smell_info[2]} **Method**: {smell_info[3]} **Smell**: {smell_info[4]}<br><br>"
+            body += f"\n - [ ] **Package Name**: {smell_info[1]} **Type/Module**: {smell_info[2]} **Method**: {smell_info[3]} **Smell**: {smell_info[4]}<br><br>"
         return body
 
     def __parse_issues(self):

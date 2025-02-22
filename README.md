@@ -36,7 +36,7 @@ An example of the file is provided below.
     PAT: ${{ secrets.PAT }}
 
 - name: DesigniteJava incremental code quality analysis and issue creation
-  uses: DesigniteTools/dj-incremental-analysis@v1.0.0
+  uses: DesigniteTools/designite-incremental-analysis@v2.0.9
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     designite-output-old: designite-output-${{ github.event.before }}
@@ -61,12 +61,12 @@ An example of the file is provided below.
 ```yml
 - name: Run Designite analysis for the latest commit
   id: designite
-  uses: DesigniteTools/DPyAction@v1.1.1
+  uses: DesigniteTools/DPyAction@v1.1.2
   with:
     PAT: ${{ secrets.PAT }}
 
 - name: Designite incremental code quality analysis and issue creation
-  uses: DesigniteTools/dj-incremental-analysis@v1.0.0
+  uses: DesigniteTools/designite-incremental-analysis@v2.0.9
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
     designite-output-old: designite-output-${{ github.event.before }}
@@ -74,6 +74,5 @@ An example of the file is provided below.
     repo-name: ${{ github.repository }}  
     tool-name: 'dpy'
 ```
-
 
 Consider checking out this [example repository](https://github.com/tushartushar/embed_using_llms) utilizing this action. 
