@@ -1,4 +1,4 @@
-name: 'DesigniteJava Incremental Code Quality Analysis'
+name: 'Designite Incremental Code Quality Analysis'
 description: 'Identify code quality smells in new code and create new issues automatically to resolve the smells'
 branding:
     color: 'orange'
@@ -8,10 +8,10 @@ inputs:
     description: 'GitHub token created during workflow execution (Set to Read and Write)'
     required: true
   designite-output-old:
-    description: 'DesigniteJava analysis output folder name from previous commit'
+    description: 'Code quality analysis output folder name from previous commit'
     required: true
   designite-output-new:
-    description: 'DesigniteJava analysis output folder name from current commit'
+    description: 'Code quality analysis output folder name from current commit'
     required: true    
   repo-name:
     description: 'Repository name'
