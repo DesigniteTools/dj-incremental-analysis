@@ -33,7 +33,7 @@ def main(token, designite_output_old, designite_output_new, repo, source_tool):
     # ls('/github/workspace')
     os.rename(os.path.abspath('designite-output'), os.path.abspath(designite_output_new))
 
-    get_new_smells(designite_output_old, designite_output_new)
+    get_new_smells(designite_output_old, designite_output_new, source_tool)
     issues = Issues("new_smells.json", token=token, repo=repo).get_issues().create_issues()
     if not issues:
         print("Failed to create issues.")
