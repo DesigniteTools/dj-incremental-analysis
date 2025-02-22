@@ -16,6 +16,9 @@ inputs:
   repo-name:
     description: 'Repository name'
     required: true
+  tool-name:
+    description: 'Tool used for code analysis (dj or dpy)'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -24,3 +27,4 @@ runs:
     - --designite-output-old=${{ inputs.designite-output-old }}
     - --designite-output-new=${{ inputs.designite-output-new }}
     - --repo-name=${{ inputs.repo-name }}
+    - --tool-name=${{ inputs.tool-name }}

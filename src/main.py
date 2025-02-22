@@ -5,9 +5,9 @@ from designiteutil.designite_diff import process
 from artifact_processor import ArtifactProcessor
 from issue import Issues
 
-def get_new_smells(designite_output_old, designite_output_new):
+def get_new_smells(designite_output_old, designite_output_new, source_tool):
     '''Get the new smells from the current run'''
-    process(designite_output_old, designite_output_new, "new_smells.json")
+    process(designite_output_old, designite_output_new, "new_smells.json", source_tool)
     with open("new_smells.json", "r") as f: #pylint: disable=unspecified-encoding
         print(f.read())
 
@@ -26,7 +26,7 @@ def ls(folder):
         print(file)
 
 
-def main(token, designite_output_old, designite_output_new, repo):
+def main(token, designite_output_old, designite_output_new, repo, source_tool):
     '''Download an artifact from a given run ID.'''
     if not _download_artifact(designite_output_old, repo, token):
         return
@@ -45,7 +45,9 @@ if __name__ == "__main__":
     parser.add_argument("--repo-name", dest="repo", help="Repo name")
     parser.add_argument("--designite-output-old", dest="designite_output_old", help="Designite Output Old")
     parser.add_argument("--designite-output-new", dest="designite_output_new", help="Designite Output New")
+    parser.add_argument("--tool-name", dest="source_tool", help="Tool used for code analysis ('dj' or 'dpy')")
+
     args = parser.parse_args()
 
     # download_artifact(args.token, args.run_id, args.repo)
-    main(args.token, args.designite_output_old, args.designite_output_new, args.repo)
+    main(args.token, args.designite_output_old, args.designite_output_new, args.repo, args.source_tool)
