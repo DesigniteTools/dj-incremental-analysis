@@ -7,9 +7,9 @@ FROM python:3.12-alpine
 # COPY . .
 COPY src/ src/
 COPY requirements.txt /requirements.txt
-COPY designite_util-1.0.0.tar.gz /designite_util-1.0.0.tar.gz
+COPY designite_util-1.0.1.tar.gz /designite_util-1.0.1.tar.gz
 RUN pip install -r requirements.txt
-RUN pip install designite_util-1.0.0.tar.gz
+RUN pip install designite_util-1.0.1.tar.gz
 
 #RUN ls -a
 #RUN ls -a src/
